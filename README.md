@@ -136,3 +136,8 @@ The Frontend will be available at `http://localhost:3000` and the Backend API at
 Once the backend is running, you can access the Swagger documentation at:
 `http://localhost:8000/docs`
 
+## Frontend is deployed at: https://pawait-travel-advisor.vercel.app/
+
+## Backend is deployed at: https://pawait-travel-advisor.onrender.com
+Initial request takes a long time because the backend on render sleeps when inactive and has to start-up when a new request comes after a long time.
+
