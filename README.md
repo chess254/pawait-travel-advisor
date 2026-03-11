@@ -142,5 +142,5 @@ Once the backend is running, you can access the Swagger documentation at:
 ## Frontend is deployed at: https://pawait-travel-advisor.vercel.app/
 
 ## Backend is deployed at: https://pawait-travel-advisor.onrender.com
-Initial request takes a long time because the backend on render sleeps when inactive and has to start-up when a new request comes after a long time.
+## Initial request takes a long time because the backend on render sleeps when inactive and has to start-up when a new request comes after a long time.
 
