@@ -117,7 +117,6 @@ The Frontend will be available at `http://localhost:3000` and the Backend API at
 
 *(Developer tools like Ruff and MyPy are included for linting and type checking).*
 
-The backend exposes a ```/health``` endpoint that returns a 200 OK response with json indicating whether it is up or not.
 
 ### Frontend Setup
 
@@ -185,5 +184,9 @@ The core endpoint for the Travel Advisor. Accepts a question and an optional cha
 ## Frontend is deployed at: https://pawait-travel-advisor.vercel.app/
 
 ## Backend is deployed at: https://pawait-travel-advisor.onrender.com
+
+other endpoints: 
+*   **Swagger UI**: https://pawait-travel-advisor.onrender.com/docs
+*   **ReDoc**: https://pawait-travel-advisor.onrender.com/redoc
 ## Initial request takes a long time because the backend on render sleeps when inactive and has to start-up when a new request comes after a long time.
 
