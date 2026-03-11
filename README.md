@@ -111,9 +111,3 @@ The Frontend will be available at `http://localhost:3000` and the Backend API at
 Once the backend is running, you can access the Swagger documentation at:
 `http://localhost:8000/docs`
 
-## Evaluation Criteria Met
-
-- **Code Quality**: Structured backend with modular routers, schemas, and configurations. Clean frontend separating state management from views using custom hooks.
-- **Technical Implementation**: Full-stack integration with Gemini AI, type checking, formatting pipelines (Ruff, ESLint).
-- **UI/UX**: Responsive TailwindCSS design with glassmorphism and real-time feedback.
-- **Production Readiness**: Docker Compose orchestration and Continuous Integration (CI) configuration for GitHub Actions.

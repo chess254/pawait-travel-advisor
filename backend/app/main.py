@@ -4,11 +4,11 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from dotenv import load_dotenv
+from app.core.config import settings
+from app.api.routers import chat, health
 
 load_dotenv()
 
-from app.core.config import settings
-from app.api.routers import chat, health
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
