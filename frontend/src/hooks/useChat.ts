@@ -22,7 +22,13 @@ export function useChat() {
     setError(null);
 
     try {
-      const data = await api.postQuery(userMessage.content);
+      // Map existing messages to simple role/content objects for the API
+      const history = messages.map(msg => ({
+        role: msg.role,
+        content: msg.content
+      }));
+
+      const data = await api.postQuery(userMessage.content, history);
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),

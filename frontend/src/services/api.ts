@@ -3,13 +3,13 @@ import { QueryResponse } from "@/types";
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export const api = {
-  async postQuery(query: string): Promise<QueryResponse> {
+  async postQuery(query: string, history: { role: string; content: string }[] = []): Promise<QueryResponse> {
     const response = await fetch(`${API_BASE_URL}/query`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query, history }),
     });
 
     if (!response.ok) {

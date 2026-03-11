@@ -13,7 +13,7 @@ async def process_query(request: QueryRequest):
         raise HTTPException(status_code=500, detail="Gemini API Key is not configured on the server")
 
     try:
-        response_text = await advisor.get_response(request.query)
+        response_text = await advisor.get_response(request.query, request.history)
         return QueryResponse(response=response_text)
     
     except Exception as e:
