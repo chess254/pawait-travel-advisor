@@ -1,6 +1,8 @@
 fastapi
 uvicorn
-python-dotenv
-google-generativeai
 pydantic
-slowapi
+pydantic-settings
+google-genai
+ruff
+mypy
+pytest

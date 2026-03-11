@@ -5,14 +5,15 @@ import { Send, User, Bot, Loader2, Sparkles, History as HistoryIcon, Copy, Check
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { Message, QueryResponse } from "@/types";
+import { useChat } from "@/hooks/useChat";
 
 export default function ChatModule() {
   const [query, setQuery] = useState("");
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const { messages, isLoading, sendMessage } = useChat();
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -26,52 +27,9 @@ export default function ChatModule() {
     e.preventDefault();
     if (!query.trim() || isLoading) return;
 
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      role: 'user',
-      content: query,
-      timestamp: new Date(),
-    };
-
-    setMessages((prev: Message[]) => [...prev, userMessage]);
+    const currentQuery = query;
     setQuery("");
-    setIsLoading(true);
-
-    try {
-      const response = await fetch("http://localhost:8000/query", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query: userMessage.content }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to get response from server");
-      }
-
-      const data: QueryResponse = await response.json();
-
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: data.response,
-        timestamp: new Date(),
-      };
-
-      setMessages((prev: Message[]) => [...prev, assistantMessage]);
-    } catch (error) {
-      console.error("Error:", error);
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        role: 'assistant',
-        content: "I'm sorry, I'm having trouble connecting to my brain right now. Please make sure the backend is running and try again.",
-        timestamp: new Date(),
-      };
-      setMessages((prev: Message[]) => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
-    }
+    await sendMessage(currentQuery);
   };
 
   const copyToClipboard = (text: string, id: string) => {
