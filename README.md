@@ -117,6 +117,8 @@ The Frontend will be available at `http://localhost:3000` and the Backend API at
 
 *(Developer tools like Ruff and MyPy are included for linting and type checking).*
 
+The backend exposes a ```/health``` endpoint that returns a 200 OK response with json indicating whether it is up or not.
+
 ### Frontend Setup
 
 1. Navigate to the frontend directory:
@@ -136,8 +138,49 @@ The Frontend will be available at `http://localhost:3000` and the Backend API at
 
 ## API Documentation
 
-Once the backend is running, you can access the Swagger documentation at:
-`http://localhost:8000/docs`
+Once the backend is running, FastAPI automatically generates and serves interactive API documentation:
+*   **Swagger UI**: `http://localhost:8000/docs`
+*   **ReDoc**: `http://localhost:8000/redoc`
+
+### Available Endpoints
+
+#### `GET /health`
+Returns the status of the API and its integration with Gemini AI.
+**Response:**
+```json
+{
+  "status": "healthy",
+  "ai_configured": true,
+  "version": "1.1.0"
+}
+```
+
+#### `POST /query`
+The core endpoint for the Travel Advisor. Accepts a question and an optional chat history array to maintain conversational context.
+**Request Payload:**
+```json
+{
+  "query": "Do I need a visa to visit Japan?",
+  "history": [
+    {
+      "role": "user",
+      "content": "Hi, I'm planning a trip."
+    },
+    {
+      "role": "assistant",
+      "content": "That sounds exciting! How can I help you prepare?"
+    }
+  ]
+}
+```
+**Response:**
+```json
+{
+  "response": "## Japan Visa Requirements...\n\nYes, depending on your nationality...",
+  "status": "success",
+  "model_used": "gemini-pro-latest"
+}
+```
 
 ## Frontend is deployed at: https://pawait-travel-advisor.vercel.app/
 
