@@ -20,7 +20,7 @@ A modern full-stack web application that serves as an interactive Q&A system for
 
 ## AI Prompt
 
-The large language model (Google Gemini) is initialized with the following system instruction to guarantee professional, formatted, and strictly scoped responses. It uses a structured Framework (Persona, Capabilities, Constraints) to ensure zero-shot performance:
+The LLM (Google Gemini) is initialized with the following prompts:
 
 ```text
 You are 'PawaIt Travel Advisor', an elite AI legal and logistics consultant specializing in global travel documentation.
@@ -64,9 +64,12 @@ The frontend separates UI and data-fetching concerns:
 
 The easiest way to run the application is using Docker Compose.
 
-1. Create a `.env` in the `backend` directory with your Gemini API Key:
+1. Rename the `.env.example` to `.env` in the `backend` and root directory replacing `your_gemini_api_key_here` with your Gemini API Key:
+
    ```env
-   GEMINI_API_KEY=your_key_here
+   GEMINI_API_KEY=your_gemini_api_key_here
+   PORT=8000
+DEBUG=True
    ```
 2. From the root directory, start the containers:
    ```bash
