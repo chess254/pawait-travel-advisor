@@ -34,7 +34,7 @@ class TravelAdvisor:
                     system_instruction=self.system_instruction,
                 )
             )
-            return response.text
+            return response.text or "I'm sorry, I couldn't generate a response for that."
         except Exception as e:
             logger.error(f"Error communicating with AI: {str(e)}")
             return f"Error communicating with AI: {str(e)}"
